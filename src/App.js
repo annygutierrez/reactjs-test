@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   state = {
     persons: [
       { id: 'skjkjd73heh8h3', name: "Max", age: 28 },
       { id: 'edkjwhui3', name: "Manu", age: 29 },
-      { id: 'oi83nd3yhdu',name: "Anny", age: 20 }
+      { id: 'oi83nd3yhdu', name: "Anny", age: 20 }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -70,10 +70,10 @@ class App extends Component {
             this.state.persons.map((person, index) => {
               return <Person
                 key={person.id}
-                click={() => {this.deletePersonHandler(index)}}
+                click={() => { this.deletePersonHandler(index) }}
                 name={person.name}
                 age={person.age}
-                changed={(event) => {this.nameChangedHandler(event, person.id)}}
+                changed={(event) => { this.nameChangedHandler(event, person.id) }}
               />
             })
           }
@@ -92,22 +92,24 @@ class App extends Component {
       classes.push('red'); // classes = ['red'];
     }
 
-    if (this.state.persons.length <=1) {
+    if (this.state.persons.length <= 1) {
       classes.push('bold'); // classes = ['red', 'bold'];
     }
 
     return (
-      <div className="App">
-        <h1>Hi, Im a React app</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}
-        >Toggle Persons</button>
-        {
-          persons
-        }
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, Im a React app</h1>
+          <p className={classes.join(' ')}>This is really working</p>
+          <button
+            style={style}
+            onClick={this.togglePersonsHandler}
+          >Toggle Persons</button>
+          {
+            persons
+          }
+        </div>
+      </StyleRoot>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Im a React App!!!'));
   }
