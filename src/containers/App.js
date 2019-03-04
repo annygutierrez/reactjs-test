@@ -14,6 +14,19 @@ class App extends Component {
     showPersons: false
   }
 
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponetUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] cmponentDidUpdate');
+  }
+
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
