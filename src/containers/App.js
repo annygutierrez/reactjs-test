@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+// Now we return WithClass with lower case because this is not a component anymore, is a normal function that return something
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 
 class App extends Component {
   state = {
@@ -75,7 +77,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
         {
           this.state.showCockpit ? <Cockpit
@@ -88,11 +90,13 @@ class App extends Component {
         {
           persons
         }
-      </WithClass>
+      </Aux>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Im a React App!!!'));
   }
 }
 
-export default App;
+// Semantical thing up to you:
+// High order components that change the logic of a component maybe should be use this way
+export default withClass(App, classes.App);
 
