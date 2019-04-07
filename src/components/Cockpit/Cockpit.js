@@ -32,17 +32,17 @@ const cockpit = (props) => {
     btnClass = classes.Red;
   }
 
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     assignClasses.push(classes.red); // classes = ['red'];
   }
 
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     assignClasses.push(classes.bold); // classes = ['red', 'bold'];
   }
 
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi, Im a React app</h1>
+      <h1>{props.title}</h1>
       <p className={assignClasses.join(' ')}>This is really working</p>
       <button
         className={btnClass}
@@ -52,4 +52,7 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+
+// Is a technique: React memorazi or store a snapshoot of this component
+// Only if its imports are updated it will re-render the entire component
+export default React.memo(cockpit);
