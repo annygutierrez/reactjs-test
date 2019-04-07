@@ -11,7 +11,8 @@ class App extends Component {
       { id: 'oi83nd3yhdu', name: "Anny", age: 20 }
     ],
     otherState: 'some other value',
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   }
 
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[App.js] shouldComponetUpdate');
+    // Return true means that react always re-render the entire component
     return true;
   }
 
@@ -73,11 +75,14 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonsHandler}
-        />
+        <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
+        {
+          this.state.showCockpit ? <Cockpit
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonsHandler}
+          /> : null
+        }
         {
           persons
         }

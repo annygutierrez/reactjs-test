@@ -10,9 +10,21 @@ const cockpit = (props) => {
     setTimeout(() => {
       alert('Saved data to cloud!')
     }, 1000);
+    // This return is like  componentDidUnmount
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    }
   }, []);
   // The array parameter is for the rerender: Every time the parameters rerender, if its empty, it never  does it again.
   // }, [props.persons]);
+  
+  // Runs in every cycle with no argumrnts(An array that list all the data that useEffect should watch)
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect');
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    };
+  });
 
   const assignClasses = [];
   let btnClass = '';
