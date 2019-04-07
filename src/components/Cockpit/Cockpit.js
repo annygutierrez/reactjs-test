@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
-  
+  // useState()
   // You can add as many use-effect you want
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
@@ -11,6 +11,7 @@ const cockpit = (props) => {
       alert('Saved data to cloud!')
     }, 1000);
   }, []);
+  // The array parameter is for the rerender: Every time the parameters rerender, if its empty, it never  does it again.
   // }, [props.persons]);
 
   const assignClasses = [];
