@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+// When you use PureComponent to extend yours, it only rerenders the component when its props are updated, it compares all its props.
+// Replace the neeed to use shouldComponent update to compare all the props changes
+class Persons extends PureComponent {
 
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[Persons.js] getDerivedStateFromProps');
   //   return state;
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Persons.js] shouldComponentUpdate');
-    // It compare this two values are the smae, values are aur pointers here
-    if (
-      nextProps.persons !== this.props.persons ||
-      nextProps.changed !== this.props.changed ||
-      nextProps.clicked !== this.props.clicked
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-    // return true
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //   // It compare this two values are the smae, values are aur pointers here
+  //   if (
+  //     nextProps.persons !== this.props.persons ||
+  //     nextProps.changed !== this.props.changed ||
+  //     nextProps.clicked !== this.props.clicked
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  //   // return true
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] getSnapshotBeforeUpdate');
