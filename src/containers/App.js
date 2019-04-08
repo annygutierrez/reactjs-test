@@ -15,7 +15,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   }
 
   componentDidMount() {
@@ -54,9 +55,13 @@ class App extends Component {
 
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-
-    this.setState({
-      persons
+    
+    // The best practice to update the state that depends on old state
+    this.setState((prevState, props) => {
+      return {
+        persons,
+        changeCounter: prevState.changeCounter + 1
+      }
     })
   }
 
