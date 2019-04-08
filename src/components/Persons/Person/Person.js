@@ -22,7 +22,7 @@ class Person extends Component {
   }
 };
 
-// Git test
+// Git test 2
 
 Person.propTypes = {
   click: PropTypes.func,
