@@ -22,6 +22,8 @@ class Person extends Component {
   }
 };
 
+// Git test
+
 Person.propTypes = {
   click: PropTypes.func,
   changed: PropTypes.func,
