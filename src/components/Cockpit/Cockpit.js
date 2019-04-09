@@ -4,16 +4,16 @@ import classes from './Cockpit.css';
 const cockpit = (props) => {
   // Null is its initial value
   const toggleBtnRef = useRef(null);
-  toggleBtnRef.current.click();
 
   // useState()
   // You can add as many use-effect you want
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // Http request ...
-    setTimeout(() => {
-      alert('Saved data to cloud!')
-    }, 1000);
+    // setTimeout(() => {
+    //   alert('Saved data to cloud!')
+    // }, 1000);
+    toggleBtnRef.current.click();
     // This return is like  componentDidUnmount
     return () => {
       console.log('[Cockpit.js] cleanup work in useEffect');
@@ -55,6 +55,7 @@ const cockpit = (props) => {
       >
         Toggle Persons
       </button>
+      <button onClick={props.login}>Log in</button>
     </div>
   );
 };

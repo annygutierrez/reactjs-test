@@ -16,7 +16,8 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   componentDidMount() {
@@ -55,7 +56,7 @@ class App extends Component {
 
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-    
+
     // The best practice to update the state that depends on old state
     this.setState((prevState, props) => {
       return {
@@ -70,27 +71,37 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   }
 
+  loginHandler = () => {
+    this.setState({ authenticated: true })
+  };
+
   render() {
     let persons = null;
 
     if (this.state.showPersons) {
-      persons = <Persons
-        persons={this.state.persons}
-        clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler}
-      />;
+      persons = (
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+          isAuthenticated={this.state.authenticated}
+        />
+      );
     }
 
     return (
       <Aux>
         <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove Cockpit</button>
         {
-          this.state.showCockpit ? <Cockpit
-            title={'Hi I am a React App'}
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            clicked={this.togglePersonsHandler}
-          /> : null
+          this.state.showCockpit ? (
+            <Cockpit
+              title={'Hi I am a React App'}
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              clicked={this.togglePersonsHandler}
+              login={this.loginHandler}
+            />
+          ) : null
         }
         {
           persons
