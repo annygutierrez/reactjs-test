@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import Person from './Person/Person';
-import AuthContext from '../../context/auth-context';
 
 // When you use PureComponent to extend yours, it only rerenders the component when its props are updated, it compares all its props.
 // Replace the neeed to use shouldComponent update to compare all the props changes
@@ -38,22 +37,17 @@ class Persons extends PureComponent {
 
   render() {
     console.log('[Persons.js] rendering...');
-    return <AuthContext.Consumer>
-      {
-       (context) => this.props.persons.map((person, index) => {
-          return (
-            <Person
-              key={person.id}
-              click={() => { this.props.clicked(index) }}
-              name={person.name}
-              age={person.age}
-              changed={(event) => { this.props.changed(event, person.id) }}
-              isAuth={this.props.isAuthenticated}
-            />
-          )
-        })
-      }
-    </AuthContext.Consumer>
+    return this.props.persons.map((person, index) => {
+      return (
+        <Person
+          key={person.id}
+          click={() => { this.props.clicked(index) }}
+          name={person.name}
+          age={person.age}
+          changed={(event) => { this.props.changed(event, person.id) }}
+        />
+      )
+    })
   }
 }
 
