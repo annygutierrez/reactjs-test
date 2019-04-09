@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
+  // Null is its initial value
+  const toggleBtnRef = useRef(null);
+  toggleBtnRef.current.click();
+
   // useState()
   // You can add as many use-effect you want
   useEffect(() => {
@@ -17,7 +21,7 @@ const cockpit = (props) => {
   }, []);
   // The array parameter is for the rerender: Every time the parameters rerender, if its empty, it never  does it again.
   // }, [props.persons]);
-  
+
   // Runs in every cycle with no argumrnts(An array that list all the data that useEffect should watch)
   useEffect(() => {
     console.log('[Cockpit.js] 2nd useEffect');
@@ -45,9 +49,12 @@ const cockpit = (props) => {
       <h1>{props.title}</h1>
       <p className={assignClasses.join(' ')}>This is really working</p>
       <button
+        ref={toggleBtnRef}
         className={btnClass}
         onClick={props.clicked}
-      >Toggle Persons</button>
+      >
+        Toggle Persons
+      </button>
     </div>
   );
 };

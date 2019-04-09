@@ -25,6 +25,7 @@ class Person extends Component {
         </p>
         <p>{this.props.children}</p>
         <input
+          // This is not usable in functional components
           // ref={(inputEl) => {this.inputElement = inputEl}}
           ref={this.inputElementRef}
           type="text"
